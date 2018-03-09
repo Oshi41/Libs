@@ -43,7 +43,7 @@ namespace MVVM
         public void OnCanExecuteChanged()
         {
             CommandManager.InvalidateRequerySuggested();
-            //
+            
         }
     }
 }
