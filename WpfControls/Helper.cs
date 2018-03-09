@@ -1,6 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace WpfControls
 {
@@ -41,6 +43,30 @@ namespace WpfControls
                 }
             }
             return ch;
+        }
+
+        /// <summary>
+        /// Возвращает первого родителя заданного типа в дереве контролов
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static T GetParent<T>(DependencyObject element)
+            where T : DependencyObject
+        {
+            DependencyObject parent = element;
+
+            while (parent != null)
+            {
+                if (parent is T find)
+                {
+                    return find;
+                }
+
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return null;
         }
 
         #region Nested WinAPI class

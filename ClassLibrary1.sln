@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextHelper", "TextHelper\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{CD6538E4-F8E0-47B2-B33C-C791D249E953}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csproj", "{7DC54FA9-021F-42BD-88CD-85A40C1D8014}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CD6538E4-F8E0-47B2-B33C-C791D249E953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD6538E4-F8E0-47B2-B33C-C791D249E953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD6538E4-F8E0-47B2-B33C-C791D249E953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

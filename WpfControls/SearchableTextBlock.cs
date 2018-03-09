@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +13,9 @@ namespace WpfControls
 
         public static readonly DependencyProperty SearchTextProperty = DependencyProperty.Register(
             "SearchText", typeof(string), typeof(SearchableTextBlock),
-            new FrameworkPropertyMetadata(null, HighLightText));
+            new FrameworkPropertyMetadata(null,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                HighLightText));
 
         private static void HighLightText(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

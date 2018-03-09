@@ -35,7 +35,8 @@ namespace WpfControls
 
         public static readonly DependencyProperty AddStepProperty = DependencyProperty.Register(
             "AddStep", typeof(double), typeof(NumericInput),
-            new FrameworkPropertyMetadata((double)1));
+            new FrameworkPropertyMetadata((double)1,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         private static readonly DependencyProperty CanIncreaseProperty = DependencyProperty.Register(
             "CanIncrease", typeof(bool), typeof(NumericInput), new PropertyMetadata(true));
