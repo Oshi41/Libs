@@ -6,12 +6,17 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControls", "WpfControls\WpfControls.csproj", "{300BC3EC-0819-4679-B0CE-1A8433187AB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToCheck", "ToCheck\ToCheck.csproj", "{D991FFFD-53BC-455F-A76E-5021964C8B4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7} = {5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextHelper", "TextHelper\TextHelper.csproj", "{BFB27450-79DE-49F4-8607-25F4FC5A6CE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{CD6538E4-F8E0-47B2-B33C-C791D249E953}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csproj", "{7DC54FA9-021F-42BD-88CD-85A40C1D8014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbabiltyMath", "ProbabiltyMath\ProbabiltyMath.csproj", "{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC54FA9-021F-42BD-88CD-85A40C1D8014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

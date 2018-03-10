@@ -95,6 +95,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProbabiltyMath\ProbabiltyMath.csproj">
+      <Project>{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}</Project>
+      <Name>ProbabiltyMath</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfControls\WpfControls.csproj">
       <Project>{300bc3ec-0819-4679-b0ce-1a8433187ab6}</Project>
       <Name>WpfControls</Name>

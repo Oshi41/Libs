@@ -11,11 +11,9 @@ namespace Tracer
         private string _folderPath;
         // Always correct!!!
         private string _fileName;
-
-
         private static readonly object Locker = new object();
-
         private static Tracer _instanceInner;
+
         private static Tracer Instance
         {
             get
@@ -182,7 +180,7 @@ namespace Tracer
             [CallerMemberName] string member = null,
             [CallerLineNumber] int line = -1)
         {
-            var message = $"ERROR\n{file} {member} {line}\n{e.Message}\n{e.StackTrace}\n\n\n";
+            var message = $"ERROR\n{file}.{member} line {line}\n{e.Message}\n{e.StackTrace}\n\n\n";
             Instance.WriteWithoutExceptions(message);
         }
         /// <summary>
@@ -197,7 +195,7 @@ namespace Tracer
             [CallerMemberName] string member = null,
             [CallerLineNumber] int line = -1)
         {
-            var message = $"{file} {member} {line}\n{text}";
+            var message = $"{file}.{member} line {line}\n{text}\n\n";
             Instance.WriteWithoutExceptions(message);
         }
         #endregion
