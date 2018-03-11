@@ -57,6 +57,5 @@ namespace WpfControls.Converters
                 ? parameter
                 : DependencyProperty.UnsetValue;
         }
-
     }
 }
