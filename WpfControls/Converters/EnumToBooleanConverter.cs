@@ -55,7 +55,7 @@ namespace WpfControls.Converters
         {
             return true.Equals(value)
                 ? parameter
-                : DependencyProperty.UnsetValue
+                : DependencyProperty.UnsetValue;
         }
 
     }
