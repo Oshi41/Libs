@@ -50,13 +50,23 @@ namespace Tracer
 
         void BaseInit()
         {
+            // предыдущее имя папки (для трассировки)
+            var prevName = _folderPath;
+            // была ли папка переименована
             var renamed = IsRenamed();
-            TryToCreateDirectory();
+            // была ли создана папка
+            var isFolderCreated =  TryToCreateDirectory();
+
+            if (!isFolderCreated)
+                return;
+            
+            // создаю новый файл
             CreateNewFile();
 
+            // записываю в лог инф-у о переименовании папки
             if (renamed)
             {
-
+                Write($"Default folder has been renamed from \'{prevName}\' to \'{_folderPath}\'");
             }
         }
 
@@ -90,6 +100,9 @@ namespace Tracer
             if (Directory.Exists(_folderPath))
                 return true;
 
+            // для трасировки
+            var tempDir = _folderPath;
+
             try
             {
                 // успешно создал
@@ -101,6 +114,7 @@ namespace Tracer
                 try
                 {
                     _fileName = Path.GetTempFileName();
+                    _folderPath = Path.GetDirectoryName(_fileName);
                 }
                 catch
                 {
@@ -108,7 +122,8 @@ namespace Tracer
                 }
 
                 // папку не создал, зато сделал временный файл
-                File.AppendAllText(_fileName, e.Message);
+                var message = $"Can't create folder by path '{tempDir}', so I write in file {_fileName}\n{e.Message}";
+                File.AppendAllText(_fileName, message);
                 return false;
             }
         }
