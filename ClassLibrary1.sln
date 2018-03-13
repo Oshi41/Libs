@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbabiltyMath", "ProbabiltyMath\ProbabiltyMath.csproj", "{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlWindowService", "XamlWindowService\XamlWindowService.csproj", "{5C6271FF-E097-4AC5-8143-B0C5BD5BDE68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocContainer", "IocContainer\IocContainer.csproj", "{56932807-173C-452D-BE38-72324B57B195}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D97028C-F5CC-4E1A-99D8-5ACFC8330DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6271FF-E097-4AC5-8143-B0C5BD5BDE68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6271FF-E097-4AC5-8143-B0C5BD5BDE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6271FF-E097-4AC5-8143-B0C5BD5BDE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6271FF-E097-4AC5-8143-B0C5BD5BDE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56932807-173C-452D-BE38-72324B57B195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56932807-173C-452D-BE38-72324B57B195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56932807-173C-452D-BE38-72324B57B195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56932807-173C-452D-BE38-72324B57B195}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
