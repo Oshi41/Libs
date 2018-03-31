@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace WpfControls
+namespace WpfControls.Controls
 {
     public class SearchableTextBlock : TextBlock
     {
@@ -61,8 +61,8 @@ namespace WpfControls
 
         public string SearchText
         {
-            get { return (string)GetValue(SearchTextProperty); }
-            set { SetValue(SearchTextProperty, value); }
+            get => (string)GetValue(SearchTextProperty);
+            set => SetValue(SearchTextProperty, value);
         }
 
         public static readonly DependencyProperty SelectionBrushProperty = DependencyProperty.Register(
@@ -71,8 +71,8 @@ namespace WpfControls
 
         public Brush SelectionBrush
         {
-            get { return (Brush) GetValue(SelectionBrushProperty); }
-            set { SetValue(SelectionBrushProperty, value); }
+            get => (Brush) GetValue(SelectionBrushProperty);
+            set => SetValue(SelectionBrushProperty, value);
         }
 
         #endregion

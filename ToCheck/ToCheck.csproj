@@ -100,7 +100,7 @@
       <Name>ProbabiltyMath</Name>
     </ProjectReference>
     <ProjectReference Include="..\WpfControls\WpfControls.csproj">
-      <Project>{300bc3ec-0819-4679-b0ce-1a8433187ab6}</Project>
+      <Project>{890D0937-D604-4AC6-95AE-9F60EB2AD3B6}</Project>
       <Name>WpfControls</Name>
     </ProjectReference>
   </ItemGroup>

@@ -4,50 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToCheck"
-        xmlns:wpfControls="clr-namespace:WpfControls;assembly=WpfControls"
+        xmlns:controls="clr-namespace:WpfControls.Controls;assembly=WpfControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" >
+        Title="MainWindow" SizeToContent="WidthAndHeight" >
 
-    <DockPanel Dock="Top">
-        <wpfControls:SearchLine x:Name="Line"
-                                        Width="300" 
-                                        Height="30"
-                                        SearchText="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number, UpdateSourceTrigger=Default, Mode=TwoWay}"
-                                        DockPanel.Dock="Top"/>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControls;component/Themes/NumericInput.xaml"/>
+                <ResourceDictionary Source="/WpfControls;component/Themes/SearchLine.xaml"/>
+                <ResourceDictionary Source="/WpfControls;component/Themes/PathBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="qwerqweqweqweqweqweqwe"
-                                         Width="300"
-                                         SearchText="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number}"/>
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="!@#$%^"
-                                         Width="300"
-                                         SearchText="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number}"/>
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="98546+54"
-                                         Width="300"
-                                         SearchText="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number}"/>
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="qwertiopasdfghjkl;zxcvbnm,"
-                                         Width="300"
-                                         SearchText="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number}"/>
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="dstzdfgshdgh"
-                                         Width="300"
-                                         SearchText="{Binding ElementName=Line, Path=Text}"/>
-        <wpfControls:SearchableTextBlock DockPanel.Dock="Top"
-                                         Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Number, StringFormat={}---{0}---}"
-                                         Width="300"
-                                         SearchText="{Binding ElementName=Line, Path=Text}"/>
-        <!--<TextBlock DockPanel.Dock="Top" 
-                 Height="20"
-                 Width="300" 
-                 Text="{Binding ElementName=Line, Path=Text}"/>-->
-        <!--<wpfControls:NumericInput Width="300" 
-                                  Height="30"
-                                  Maximum="10"
-                                  Minimum="-50"/>-->
-        
-    </DockPanel>
+    <StackPanel Width="300" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center"
+                Margin="0 50 0 0">
+        <controls:NumericInput Style="{StaticResource NumericInputStyle}"
+                               Margin="0 0 0 20"/>
+        <controls:SearchTextLine Style="{StaticResource SearchTextLineStyle}"
+                                 Margin="0 0 0 20"/>
+        <controls:PathBox Style="{StaticResource PathBoxStyle}"
+                          Margin="0 0 0 20"/>
+    </StackPanel>
+
 </Window>
  

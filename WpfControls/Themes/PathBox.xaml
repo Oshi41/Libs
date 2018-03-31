@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:WpfControls.Controls">
+    
+    <Style x:Key="PathBoxStyle" TargetType="controls:PathBox">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PathBox">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Box"
+                                 Text="{TemplateBinding Path}"
+                                 IsReadOnly="{TemplateBinding IsPathReadOnly}"
+                                 VerticalAlignment="Stretch"
+                                 HorizontalAlignment="Stretch"/>
+                        <Button x:Name="SearchButton"
+                                Grid.Column="1"
+                                Content="..."
+                                Width="22"
+                                VerticalAlignment="Stretch"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

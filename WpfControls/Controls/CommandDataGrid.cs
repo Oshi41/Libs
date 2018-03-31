@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WpfControls
+namespace WpfControls.Controls
 {
     /// <summary>
     /// DataGrid с коммандами на строку
@@ -16,8 +16,8 @@ namespace WpfControls
 
         public ICommand DoubleClickCommand
         {
-            get { return (ICommand) GetValue(DoubleClickCommandProperty); }
-            set { SetValue(DoubleClickCommandProperty, value); }
+            get => (ICommand) GetValue(DoubleClickCommandProperty);
+            set => SetValue(DoubleClickCommandProperty, value);
         }
 
         public static readonly DependencyProperty LeftClickCommandProperty = DependencyProperty.Register(
@@ -25,8 +25,8 @@ namespace WpfControls
 
         public ICommand LeftClickCommand
         {
-            get { return (ICommand) GetValue(LeftClickCommandProperty); }
-            set { SetValue(LeftClickCommandProperty, value); }
+            get => (ICommand) GetValue(LeftClickCommandProperty);
+            set => SetValue(LeftClickCommandProperty, value);
         }
 
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
@@ -34,8 +34,8 @@ namespace WpfControls
 
         public ICommand ClickCommand
         {
-            get { return (ICommand) GetValue(ClickCommandProperty); }
-            set { SetValue(ClickCommandProperty, value); }
+            get => (ICommand) GetValue(ClickCommandProperty);
+            set => SetValue(ClickCommandProperty, value);
         }
 
         #endregion
