@@ -47,6 +47,12 @@ namespace WpfControls.Controls
         }
         #endregion
 
+        static SearchTextLine()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SearchTextLine),
+                new FrameworkPropertyMetadata(typeof(SearchTextLine)));
+        }
+
         public SearchTextLine()
         {
             Loaded += Subscribe;

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:WpfControls.Controls">
 
-    <Style x:Key="NumericInputStyle" TargetType="controls:NumericInput">
+    <Style x:Key="{x:Type controls:NumericInput}" TargetType="controls:NumericInput">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="100"/>
 

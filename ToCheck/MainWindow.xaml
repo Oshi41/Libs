@@ -20,12 +20,9 @@
 
     <StackPanel Width="300" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Margin="0 50 0 0">
-        <controls:NumericInput Style="{StaticResource NumericInputStyle}"
-                               Margin="0 0 0 20"/>
-        <controls:SearchTextLine Style="{StaticResource SearchTextLineStyle}"
-                                 Margin="0 0 0 20"/>
-        <controls:PathBox Style="{StaticResource PathBoxStyle}"
-                          Margin="0 0 0 20"/>
+        <controls:NumericInput Margin="0 0 0 20"/>
+        <controls:SearchTextLine Margin="0 0 0 20"/>
+        <controls:PathBox Margin="0 0 0 20"/>
     </StackPanel>
 
 </Window>

@@ -111,6 +111,12 @@ namespace WpfControls.Controls
 
         #endregion
 
+        static NumericInput()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericInput),
+                new FrameworkPropertyMetadata(typeof(NumericInput)));
+        }
+
         public NumericInput()
         {
             Loaded += Subscribe;

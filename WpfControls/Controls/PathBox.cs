@@ -56,8 +56,16 @@ namespace WpfControls.Controls
 
         #endregion
 
+        static PathBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PathBox), 
+                new FrameworkPropertyMetadata(typeof(PathBox)));
+        }
+
         public PathBox()
         {
+            OverridesDefaultStyle = true;
+
             Loaded += Subscribe;
         }
 
