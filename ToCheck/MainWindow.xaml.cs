@@ -25,22 +25,22 @@ namespace ToCheck
         {
             InitializeComponent();
 
-            Func<double, double> func = x =>
-            {
-                var result = Math.Pow(x, 1.666) / 1.666;
-                return result;
-            };
+            //Func<double, double> func = x =>
+            //{
+            //    var result = Math.Pow(x, 1.666) / 1.666;
+            //    return result;
+            //};
 
-            var diff = Math.Round(func(100) / func(1), 4);
-            MessageBox.Show(diff + "");
+            //var diff = Math.Round(func(100) / func(1), 4);
+            //MessageBox.Show(diff + "");
 
-            List<double> list = new List<double>();
-            for (int i = 0; i < 20; i++)
-            {
-                list.Add(SomeTest());
-            }
+            //List<double> list = new List<double>();
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    list.Add(SomeTest());
+            //}
 
-            MessageBox.Show(list.Aggregate(String.Empty, (s, d) => s += d + "\n"));
+            //MessageBox.Show(list.Aggregate(String.Empty, (s, d) => s += d + "\n"));
         }
 
         private double SomeTest()

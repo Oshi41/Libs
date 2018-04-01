@@ -20,9 +20,14 @@
 
     <StackPanel Width="300" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Margin="0 50 0 0">
-        <controls:NumericInput Margin="0 0 0 20"/>
-        <controls:SearchTextLine Margin="0 0 0 20"/>
-        <controls:PathBox Margin="0 0 0 20"/>
+        <controls:NumericInput Margin="0 0 0 20"
+                               RoundValue="True"
+                               Number="15"
+                               AddStep="15"
+                               Maximum="250"/>
+        <controls:SearchTextLine Margin="0 0 0 20"
+                                 SearchText="Some Text"/>
+        <!--<controls:PathBox Margin="0 0 0 20"/>-->
     </StackPanel>
 
 </Window>

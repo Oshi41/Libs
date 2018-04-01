@@ -1,10 +1,13 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace WpfControls
+namespace WpfControls.Helper
 {
     public class Helper
     {
@@ -67,6 +70,28 @@ namespace WpfControls
             }
 
             return null;
+        }
+
+        public static IEnumerable<T> SelectRecursive<T>(IEnumerable<T> source,
+            Func<T, IEnumerable<T>> children)
+        {
+            if (!source.Any())
+                return new List<T>();
+
+            var all = new List<T>();
+
+            foreach (var parent in source)
+            {
+                if (parent != null)
+                {
+                    all.Add(parent);
+                    var temp = children(parent);
+                    if (temp?.Any() == true)
+                        all.AddRange(temp);
+                }
+            }
+
+            return all;
         }
 
         #region Nested WinAPI class

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using WpfControls.Controls.Base;
 
 namespace WpfControls.Controls
 {
@@ -13,11 +14,10 @@ namespace WpfControls.Controls
 
         public static readonly DependencyProperty SearchTextProperty = DependencyProperty.Register(
             "SearchText", typeof(string), typeof(SearchableTextBlock),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<SearchableTextBlock>(null,
                 HighLightText));
 
-        private static void HighLightText(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void HighLightText(SearchableTextBlock d, DependencyPropertyChangedEventArgs e)
         {
             // обработка ошибок
             if (!(d is SearchableTextBlock block)) return;

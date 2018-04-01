@@ -1,37 +1,23 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:WpfControls"
-    xmlns:controls="clr-namespace:WpfControls.Controls">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfControls"
+                    xmlns:controls="clr-namespace:WpfControls.Controls">
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WpfControls;component/Themes/PathBox.xaml"/>
         <ResourceDictionary Source="/WpfControls;component/Themes/NumericInput.xaml"/>
         <ResourceDictionary Source="/WpfControls;component/Themes/SearchLine.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-    <!--<Style x:Key="{x:Type controls:PathBox}" 
+
+    <Style x:Key="{x:Type controls:PathBox}" 
            TargetType="controls:PathBox"
            BasedOn="{StaticResource PathBoxStyle}"/>
 
-    <Style x:Key="{x:Type controls:SearchTextLine}" 
-           TargetType="controls:SearchTextLine"
+    <!--x:Key="{x:Type controls:SearchTextLine}"-->
+    <Style TargetType="{x:Type controls:SearchTextLine}"
            BasedOn="{StaticResource SearchTextLineStyle}"/>
 
     <Style x:Key="{x:Type controls:NumericInput}" 
            TargetType="controls:NumericInput"
-           BasedOn="{StaticResource NumericInputStyle}"/>-->
-
-    <!--<Style TargetType="{x:Type local:CustomControl1}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomControl1}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
+           BasedOn="{StaticResource NumericInputStyle}"/>
 </ResourceDictionary>

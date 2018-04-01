@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using WpfControls.Controls.Base;
 using Button = System.Windows.Controls.Button;
 using Control = System.Windows.Controls.Control;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -10,15 +11,13 @@ namespace WpfControls.Controls
 {
     [TemplatePart(Name = "SearchButton", Type = typeof(Button))]
     [TemplatePart(Name = "Box", Type = typeof(TextBox))]
-    public class PathBox : Control
+    public class PathBox : BaseThematisedControl<PathBox>
     {
-        private readonly ActionArbiter _arbiter = new ActionArbiter();
-
         #region Dependency property
 
         public static readonly DependencyProperty IsPathReadOnlyProperty = DependencyProperty.Register(
             "IsPathReadOnly", typeof(bool), typeof(PathBox),
-            new FrameworkPropertyMetadata(true, OnEnableChange));
+            new FrameworkPropertyMetadataNew<PathBox>(true, OnEnableChange));
 
         public static readonly DependencyProperty PathTypesProperty = DependencyProperty.Register(
             "PathType", typeof(PathTypes), typeof(PathBox), new PropertyMetadata(PathTypes.File));
@@ -26,8 +25,7 @@ namespace WpfControls.Controls
 
         public static readonly DependencyProperty PathProperty = DependencyProperty.Register(
             "Path", typeof(string), typeof(PathBox), 
-            new FrameworkPropertyMetadata(null, 
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<PathBox>(null, 
                 OnPathChange));
 
         public string Path
@@ -51,36 +49,22 @@ namespace WpfControls.Controls
             set => SetValue(IsPathReadOnlyProperty, value);
         }
 
-        private TextBox BoxPart => (TextBox)Template.FindName("Box", this);
-        private Button SearchButtonPart => (Button)Template.FindName("SearchButton", this);
+        private TextBox BoxPart => TryFindTemplatePart<TextBox>("Box");
+        private Button SearchButtonPart => TryFindTemplatePart<Button>("SearchButton");
 
         #endregion
 
-        static PathBox()
+        protected override void Subscribe()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PathBox), 
-                new FrameworkPropertyMetadata(typeof(PathBox)));
-        }
-
-        public PathBox()
-        {
-            OverridesDefaultStyle = true;
-
-            Loaded += Subscribe;
-        }
-
-        private void Subscribe(object sender, RoutedEventArgs e)
-        {
-            Loaded -= Subscribe;
+            base.Subscribe();
 
             SearchButtonPart.Click += ExecuteSearch;
             BoxPart.TextChanged += OnPathChandedInner;
-
         }
 
         #region Executors
 
-        private static void OnEnableChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnEnableChange(PathBox d, DependencyPropertyChangedEventArgs e)
         {
             if (d is PathBox box
                 && e.NewValue is bool enabled
@@ -90,18 +74,18 @@ namespace WpfControls.Controls
             }
         }
 
-        private static void OnPathChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnPathChange(PathBox d, DependencyPropertyChangedEventArgs e)
         {
             if (d is PathBox box
                 && box.BoxPart != null)
             {
-                box._arbiter.Do(() => box.BoxPart.Text = (string) e.NewValue);
+                box.ActionArbiter.Do(() => box.BoxPart.Text = (string) e.NewValue);
             }
         }
 
         private void OnPathChandedInner(object sender, TextChangedEventArgs e)
         {
-            _arbiter.Do(() => Path = BoxPart.Text);
+            ActionArbiter.Do(() => Path = BoxPart.Text);
         }
 
         private void ExecuteSearch(object sender, RoutedEventArgs e)

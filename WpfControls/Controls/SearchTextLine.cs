@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfControls.Controls.Base;
 
 namespace WpfControls.Controls
 {
@@ -8,16 +9,13 @@ namespace WpfControls.Controls
     [TemplatePart(Name = "CancelSearchButton", Type = typeof(Button))]
     [TemplatePart(Name = "SearchButton", Type = typeof(Button))]
     [TemplatePart(Name = "Icon", Type = typeof(Control))]
-    public class SearchTextLine : Control
+    public class SearchTextLine : BaseThematisedControl<SearchTextLine>
     {
-        private readonly ActionArbiter _arbiter = new ActionArbiter();
-
         #region Dependency property
 
         public static readonly DependencyProperty SearchTextProperty = DependencyProperty.Register(
             "SearchText", typeof(string), typeof(SearchTextLine),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<SearchTextLine>(null,
                 OnSearchTextChanged));
 
         public static readonly DependencyProperty SearchCommandProperty = DependencyProperty.Register(
@@ -29,10 +27,10 @@ namespace WpfControls.Controls
 
         #region Properties
 
-        public Button SearchButtonPart => Template.FindName("SearchButton", this) as Button;
-        public Button CancelSearchButtonPart => Template.FindName("CancelSearchButton", this) as Button;
-        public Control IconPart => Template.FindName("Icon", this) as Control;
-        public TextBox SearchBoxPart => Template.FindName("SearchBox", this) as TextBox;
+        public Button SearchButtonPart => TryFindTemplatePart<Button>("SearchButton");
+        public Button CancelSearchButtonPart => TryFindTemplatePart<Button>("CancelSearchButton");
+        public Control IconPart => TryFindTemplatePart<Control>("Icon");
+        public TextBox SearchBoxPart => TryFindTemplatePart<TextBox>("SearchBox");
 
 
         public string SearchText
@@ -47,20 +45,9 @@ namespace WpfControls.Controls
         }
         #endregion
 
-        static SearchTextLine()
+        protected override void Subscribe()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(SearchTextLine),
-                new FrameworkPropertyMetadata(typeof(SearchTextLine)));
-        }
-
-        public SearchTextLine()
-        {
-            Loaded += Subscribe;
-        }
-
-        private void Subscribe(object sender, RoutedEventArgs e)
-        {
-            Loaded -= Subscribe;
+            base.Subscribe();
 
             SearchBoxPart.TextChanged += OnTextChanged;
             SearchButtonPart.Click += ExecuteSearch;
@@ -71,18 +58,17 @@ namespace WpfControls.Controls
 
         #region Executors
 
-        private static void OnSearchTextChanged(DependencyObject d,
+        private static void OnSearchTextChanged(SearchTextLine d,
             DependencyPropertyChangedEventArgs e)
         {
-            if (d is SearchTextLine textLine)
-            {
-                textLine._arbiter.Do(() => textLine.SearchBoxPart.Text = e.NewValue?.ToString() ?? string.Empty);
-            }
+            var text = e.NewValue?.ToString() ?? string.Empty;
+            d.ActionArbiter.Do(() => d.SearchBoxPart.Text = text);
         }
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            _arbiter.Do(() => SearchText = SearchBoxPart.Text);
+            //SearchText = SearchBoxPart.Text;
+            ActionArbiter.Do(() => SearchText = SearchBoxPart.Text);
         }
 
         private void ExecuteSearch(object sender, RoutedEventArgs e)

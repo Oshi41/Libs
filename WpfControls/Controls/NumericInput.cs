@@ -6,33 +6,31 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using WpfControls.Controls.Base;
 
 namespace WpfControls.Controls
 {
     [TemplatePart(Name = "ButtonUp", Type = typeof(RepeatButton))]
     [TemplatePart(Name = "ButtonDown", Type = typeof(RepeatButton))]
     [TemplatePart(Name = "Box", Type = typeof(TextBox))]
-    public class NumericInput : Control
+    public class NumericInput : BaseThematisedControl<NumericInput>
     {
         #region Dependency Property
 
         public static readonly DependencyProperty NumberProperty = DependencyProperty.Register(
             "Number", typeof(double?), typeof(NumericInput),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<NumericInput>(null,
                 NumberChanged));
 
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register(
             "Minimum", typeof(double), typeof(NumericInput),
-            new FrameworkPropertyMetadata(double.MinValue,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<NumericInput>(double.MinValue,
                 MinimumChanged));
 
 
         public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register(
             "Maximum", typeof(double), typeof(NumericInput),
-            new FrameworkPropertyMetadata(double.MaxValue,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<NumericInput>(double.MaxValue,
                 MaximumChanged));
 
         public static readonly DependencyProperty AddStepProperty = DependencyProperty.Register(
@@ -42,8 +40,7 @@ namespace WpfControls.Controls
 
         public static readonly DependencyProperty RoundValueProperty = DependencyProperty.Register(
             "RoundValue", typeof(bool), typeof(NumericInput),
-            new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadataNew<NumericInput>(true,
                 OnRoundChange));
 
         #endregion
@@ -75,9 +72,9 @@ namespace WpfControls.Controls
             set => SetValue(RoundValueProperty, value);
         }
 
-        public RepeatButton ButtonUpPart => Template.FindName("ButtonUp", this) as RepeatButton;
-        public RepeatButton ButtonDownPart => Template.FindName("ButtonDown", this) as RepeatButton;
-        public TextBox BoxPart => Template.FindName("Box", this) as TextBox;
+        public RepeatButton ButtonUpPart => TryFindTemplatePart<RepeatButton>("ButtonUp");
+        public RepeatButton ButtonDownPart => TryFindTemplatePart<RepeatButton>("ButtonDown");
+        public TextBox BoxPart => TryFindTemplatePart<TextBox>("Box");
 
         protected virtual double? GetValidValue
         {
@@ -111,20 +108,9 @@ namespace WpfControls.Controls
 
         #endregion
 
-        static NumericInput()
+        protected override void Subscribe()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericInput),
-                new FrameworkPropertyMetadata(typeof(NumericInput)));
-        }
-
-        public NumericInput()
-        {
-            Loaded += Subscribe;
-        }
-
-        private void Subscribe(object sender, RoutedEventArgs e)
-        {
-            Loaded -= Subscribe;
+            base.Subscribe();
 
             ButtonUpPart.Click += (s, args) => AddValue();
             ButtonDownPart.Click += (s, args) => AddValue(true);
@@ -132,37 +118,27 @@ namespace WpfControls.Controls
             BoxPart.PreviewKeyDown += RestrictNotDigital;
             BoxPart.AddHandler(DataObject.PastingEvent, new DataObjectPastingEventHandler(OnPasting));
             BoxPart.TextChanged += OnTextChange;
+
+            InvalidateValue();
         }
 
         #region Executors
-        private static void MaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void MaximumChanged(NumericInput d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is NumericInput input)
-            {
-                input.InvalidateValue();
-            }
+            d.InvalidateValue();
         }
-        private static void MinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void MinimumChanged(NumericInput d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is NumericInput input)
-            {
-                input.InvalidateValue();
-            }
+            d.InvalidateValue();
         }
-        private static void NumberChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void NumberChanged(NumericInput d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is NumericInput input)
-            {
-                input.InvalidateValue();
-                input.InvalidateButtons();
-            }
+            d.InvalidateValue();
+            d.InvalidateButtons();
         }
-        private static void OnRoundChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnRoundChange(NumericInput d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is NumericInput input)
-            {
-                input.InvalidateValue();
-            }
+            d.InvalidateValue();
         }
 
         /// <summary>
@@ -184,8 +160,10 @@ namespace WpfControls.Controls
         /// <param name="modifier">Используемый модификатор, который увеличивает значеие</param>
         private void InvalidateButtons(double modifier = 1)
         {
-            var canAdd = Maximum - Number >= AddStep * modifier;
-            var canDecrease = Number - Minimum >= AddStep * modifier;
+            var currentNumber = Number ?? 0;
+
+            var canAdd = Maximum - currentNumber >= AddStep * modifier;
+            var canDecrease = currentNumber - Minimum >= AddStep * modifier;
 
             ButtonUpPart.IsEnabled = canAdd;
             ButtonDownPart.IsEnabled = canDecrease;
@@ -223,7 +201,7 @@ namespace WpfControls.Controls
         /// <param name="e"></param>
         protected virtual void RestrictNotDigital(object sender, KeyEventArgs e)
         {
-            var c = Helper.GetCharFromKey(e.Key);
+            var c = Helper.Helper.GetCharFromKey(e.Key);
 
             if (Char.IsControl(c)
                 || Char.IsDigit(c)

@@ -12,7 +12,8 @@ namespace WpfControls.Controls
         #region Properties
 
         public static readonly DependencyProperty DoubleClickCommandProperty = DependencyProperty.Register(
-            "DoubleClickCommand", typeof(ICommand), typeof(CommandDataGrid), new PropertyMetadata(default(ICommand)));
+            "DoubleClickCommand", typeof(ICommand), typeof(CommandDataGrid), 
+            new PropertyMetadata(default(ICommand)));
 
         public ICommand DoubleClickCommand
         {
@@ -21,7 +22,8 @@ namespace WpfControls.Controls
         }
 
         public static readonly DependencyProperty LeftClickCommandProperty = DependencyProperty.Register(
-            "LeftClickCommand", typeof(ICommand), typeof(CommandDataGrid), new PropertyMetadata(default(ICommand)));
+            "LeftClickCommand", typeof(ICommand), typeof(CommandDataGrid), 
+            new PropertyMetadata(default(ICommand)));
 
         public ICommand LeftClickCommand
         {
@@ -30,7 +32,8 @@ namespace WpfControls.Controls
         }
 
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
-            "ClickCommand", typeof(ICommand), typeof(CommandDataGrid), new PropertyMetadata(default(ICommand)));
+            "ClickCommand", typeof(ICommand), typeof(CommandDataGrid), 
+            new PropertyMetadata(default(ICommand)));
 
         public ICommand ClickCommand
         {

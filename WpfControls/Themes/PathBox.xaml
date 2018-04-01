@@ -2,12 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:WpfControls.Controls">
 
-    <Style x:Key="{x:Type controls:PathBox}" TargetType="controls:PathBox">
+    <Style x:Key="PathBoxStyle" TargetType="controls:PathBox">
         <Setter Property="Height" Value="24"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PathBox">
-                    <Grid>
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:WpfControls.Controls">
 
-    <Style x:Key="{x:Type controls:NumericInput}" TargetType="controls:NumericInput">
+    <Style x:Key="NumericInputStyle"
+           TargetType="controls:NumericInput">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="100"/>
 
@@ -11,7 +12,9 @@
                 <ControlTemplate TargetType="controls:NumericInput">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}">
+                            Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -19,6 +22,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox x:Name="Box"
+                                     Text="{TemplateBinding Number}"
                                      Padding="5 0 0 0"
                                      VerticalAlignment="Stretch"
                                      HorizontalAlignment="Stretch"
